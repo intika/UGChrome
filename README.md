@@ -9,7 +9,7 @@ Currently i am building just x64 portable linux version i will may be add window
 Just check releases page https://github.com/intika/UGChrome/releases
 
 #### Features 
-- Disable Chromium Kwallet Feature
+- Disable Chromium Kwallet Integration
 - Double Click Close Tab
 
 #### Sources 
