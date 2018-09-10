@@ -2,6 +2,12 @@
 
 **UGChrome** is a custom build of [ungoogled-chromium](//github.com/Eloston/ungoogled-chromium/) with additional features
 
+# Flavors 
+Currently i am building just x64 portable linux version i will may be add windows version soon 
+
+# Download 
+Just check releases page https://github.com/intika/UGChrome/releases
+
 # Features 
 - Disable Chromium Kwallet Feature
 - Double Click Close Tab
