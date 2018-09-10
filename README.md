@@ -1,21 +1,21 @@
 # UGChrome
 
-**UGChrome** is a custom build of [ungoogled-chromium](//github.com/Eloston/ungoogled-chromium/) with additional features
+UGChrome is a custom build of [ungoogled-chromium](//github.com/Eloston/ungoogled-chromium/) with additional features
 
-# Flavors 
+#### Flavors 
 Currently i am building just x64 portable linux version i will may be add windows version soon 
 
-# Download 
+#### Download 
 Just check releases page https://github.com/intika/UGChrome/releases
 
-# Features 
+#### Features 
 - Disable Chromium Kwallet Feature
 - Double Click Close Tab
 
-# Sources 
+#### Sources 
 Modified sources files from main project are available under sources directory...  
 
-## Credits
+#### Credits
 
 * [The ungoogled-chromium Project](//github.com/Eloston/ungoogled-chromium/)
 * [The Chromium Project](//www.chromium.org/)
