@@ -16,5 +16,5 @@ Modified sources files from main project are available under sources directory..
 * [Inox patchset](//github.com/gcarq/inox-patchset)
 * [Debian](//tracker.debian.org/pkg/chromium-browser)
 * [Iridium Browser](//iridiumbrowser.de/)
-* The users for testing and debugging, [contributing code](//github.com/Eloston/ungoogled-chromium/graphs/contributors), providing feedback, or simply using ungoogled-chromium in some capacity.
+* The users for testing and debugging
 
