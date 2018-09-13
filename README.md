@@ -1,6 +1,6 @@
 # UGChrome
 
-UGChrome is a custom build of [ungoogled-chromium](//github.com/Eloston/ungoogled-chromium/) with additional features
+UGChrome Browser is a custom build of [ungoogled-chromium](//github.com/Eloston/ungoogled-chromium/) with additional features
 
 #### Flavors 
 Currently i am building just x64 portable linux version i will may be add windows version soon 
