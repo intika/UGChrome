@@ -14,6 +14,7 @@ Just check releases page https://www.opendesktop.org/p/1265177/
 - Disable DBus 
 - Double Click Close Tab
 - Build with those additional flags (rtc_libvpx_build_vp9=false use_system_harfbuzz=false use_gnome_keyring=false)
+- Build with (opensuse/system-libdrm.patch)
 
 #### Sources 
 Modified sources files from main project are available under sources directory...  
