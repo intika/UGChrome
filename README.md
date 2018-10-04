@@ -6,7 +6,7 @@ Currently i am building just x64 portable linux version
 i will may be add windows version soon 
 
 #### Download 
-Just check releases page https://www.opendesktop.org/p/1265177/
+Just check download page https://www.opendesktop.org/p/1265177/
 
 #### Features 
 - Disable Chromium Kwallet Integration
