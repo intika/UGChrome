@@ -1,0 +1,6 @@
+opensuse/system-libdrm.patch
+
+ubuntu/no-new-ninja-flag.patch
+ubuntu/relax-ninja-version-requirement.patch
+ungoogled-chromium/linux/manpage.patch
+ungoogled-chromium/remove-fcomplete-member-pointers-cflag.patch
