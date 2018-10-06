@@ -16,6 +16,9 @@ Just check download page https://www.opendesktop.org/p/1265177/
 - Build with those additional flags (rtc_libvpx_build_vp9=false use_system_harfbuzz=false use_gnome_keyring=false)
 - Build with (opensuse/system-libdrm.patch)
 
+#### Upstream 
+I will upstream thoses features (with flags) when i have the time... 
+
 #### Sources 
 Modified sources files from main project are available under sources directory...  
 I will may be provide patches later if this project interest more people...
