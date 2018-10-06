@@ -17,7 +17,7 @@ Just check download page https://www.opendesktop.org/p/1265177/
 - Build with (opensuse/system-libdrm.patch)
 
 #### Upstream 
-I will upstream thoses features (with flags) when i have the time... 
+I will upstream thoses features (with flags) when i have the time... and/or if some one ask for ;)
 
 #### Sources 
 Modified sources files from main project are available under sources directory...  
