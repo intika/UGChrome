@@ -1,0 +1,11 @@
+--- a/config_bundles/linux_portable/gn_flags.map
++++ b/config_bundles/linux_portable/gn_flags.map
+@@ -3,3 +3,8 @@
+ linux_use_bundled_binutils=false
+ optimize_for_size=false
+ use_kerberos=false
++use_lld=true
++
++rtc_libvpx_build_vp9=false
++use_system_harfbuzz=false
++use_gnome_keyring=false

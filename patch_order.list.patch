@@ -1,0 +1,8 @@
+--- a/config_bundles/linux_portable/patch_order.list
++++ b/config_bundles/linux_portable/patch_order.list
+@@ -1,3 +1,5 @@
++opensuse/system-libdrm.patch
++
+ ubuntu/no-new-ninja-flag.patch
+ ubuntu/relax-ninja-version-requirement.patch
+ ungoogled-chromium/linux/manpage.patch

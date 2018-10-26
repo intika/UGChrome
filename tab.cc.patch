@@ -1,0 +1,115 @@
+--- a/chrome/browser/ui/views/tabs/tab.cc
++++ b/chrome/browser/ui/views/tabs/tab.cc
+@@ -101,6 +101,9 @@
+ // refresh mode.
+ constexpr int kTabSeparatorHeight = 20;
+ constexpr int kTabSeparatorTouchHeight = 24;
++    
++//intika dblclick 
++int dblClick = 0;
+ 
+ // Helper functions ------------------------------------------------------------
+ 
+@@ -585,6 +588,8 @@
+                                              : CLOSE_TAB_FROM_TOUCH;
+   DCHECK_EQ(close_button_, sender);
+   controller_->CloseTab(this, source);
++  //intika dblclick 
++  dblClick++;
+   if (event.type() == ui::ET_GESTURE_TAP)
+     TouchUMA::RecordGestureAction(TouchUMA::kGestureTabCloseTap);
+ }
+@@ -779,10 +784,14 @@
+         }
+       } else if (!IsSelected()) {
+         controller_->SelectTab(this);
++        //intika dblclick 
++        dblClick = 0;
+         base::RecordAction(UserMetricsAction("SwitchTab_Click"));
+       }
+     } else if (!IsSelected()) {
+       controller_->SelectTab(this);
++      //intika dblclick 
++      dblClick = 0;
+       base::RecordAction(UserMetricsAction("SwitchTab_Click"));
+     }
+     ui::MouseEvent cloned_event(event_in_parent, parent(),
+@@ -805,15 +814,22 @@
+   // In some cases, ending the drag will schedule the tab for destruction; if
+   // so, bail immediately, since our members are already dead and we shouldn't
+   // do anything else except drop the tab where it is.
+-  if (controller_->EndDrag(END_DRAG_COMPLETE))
+-    return;
+-
++  if (controller_->EndDrag(END_DRAG_COMPLETE)) {
++      //intika dblclick 
++      dblClick = 0;
++	  return;
++    }
++    
+   // Close tab on middle click, but only if the button is released over the tab
+   // (normal windows behavior is to discard presses of a UI element where the
+   // releases happen off the element).
+   if (event.IsMiddleMouseButton()) {
++    //intika dblclick 
++    dblClick = 0;
+     if (HitTestPoint(event.location())) {
+       controller_->CloseTab(this, CLOSE_TAB_FROM_MOUSE);
++      //intika dblclick 
++      dblClick++;
+     } else if (closing_) {
+       // We're animating closed and a middle mouse button was pushed on us but
+       // we don't contain the mouse anymore. We assume the user is clicking
+@@ -824,18 +840,52 @@
+       Tab* closest_tab = controller_->GetTabAt(location_in_parent);
+       if (closest_tab)
+         controller_->CloseTab(closest_tab, CLOSE_TAB_FROM_MOUSE);
++        //intika dblclick 
++        dblClick++;
+     }
+   } else if (event.IsOnlyLeftMouseButton() && !event.IsShiftDown() &&
+              !IsSelectionModifierDown(event)) {
+     // If the tab was already selected mouse pressed doesn't change the
+     // selection. Reset it now to handle the case where multiple tabs were
+     // selected.
++      
++    //intika dblclick - Old Code ----------------------------------------
++    /*
+     controller_->SelectTab(this);
+ 
+     if (alert_indicator_button_ && alert_indicator_button_->visible() &&
+         alert_indicator_button_->bounds().Contains(event.location())) {
+       base::RecordAction(UserMetricsAction("TabAlertIndicator_Clicked"));
++    }*/
++    //intika dblclick - Old Code ----------------------------------------
++    //intika dblclick ---------------------------------------------------
++    if (!IsSelected()) {
++        dblClick = 0;
++    }
++      
++    if (dblClick > 1) {
++        dblClick = 0;
++        if (HitTestPoint(event.location())) {
++          controller_->CloseTab(this, CLOSE_TAB_FROM_MOUSE);
++          dblClick++;
++        } else if (closing_) {
++          gfx::Point location_in_parent = event.location();
++          ConvertPointToTarget(this, parent(), &location_in_parent);
++          Tab* closest_tab = controller_->GetTabAt(location_in_parent);
++          if (closest_tab)
++            controller_->CloseTab(closest_tab, CLOSE_TAB_FROM_MOUSE);
++            //intika dblclick 
++            dblClick++;
++        }
++    } else {
++        controller_->SelectTab(this);
++	    dblClick++;
++        if (alert_indicator_button_ && alert_indicator_button_->visible() &&
++            alert_indicator_button_->bounds().Contains(event.location())) {
++          base::RecordAction(UserMetricsAction("TabAlertIndicator_Clicked"));
++        }
+     }
++    //intika dblclick --------------------------------------------------- 
+   }
+ }
+ 

@@ -1,0 +1,60 @@
+--- a/chrome/browser/password_manager/native_backend_kwallet_x_unittest.cc
++++ b/chrome/browser/password_manager/native_backend_kwallet_x_unittest.cc
+@@ -353,13 +353,13 @@
+   if (desktop_env_ == base::nix::DESKTOP_ENVIRONMENT_KDE5) {
+     mock_kwallet_proxy_ =
+         new dbus::MockObjectProxy(mock_session_bus_.get(),
+-                                  "org.kde.kwalletd5",
+-                                  dbus::ObjectPath("/modules/kwalletd5"));
++                                  "org.kde.kxalletd5",
++                                  dbus::ObjectPath("/modules/kxalletd5"));
+   } else {
+     mock_kwallet_proxy_ =
+         new dbus::MockObjectProxy(mock_session_bus_.get(),
+-                                  "org.kde.kwalletd",
+-                                  dbus::ObjectPath("/modules/kwalletd"));
++                                  "org.kde.kxalletd",
++                                  dbus::ObjectPath("/modules/kxalletd"));
+   }
+   EXPECT_CALL(*mock_kwallet_proxy_.get(), CallMethodAndBlock(_, _))
+       .WillRepeatedly(
+@@ -372,14 +372,14 @@
+   if (desktop_env_ == base::nix::DESKTOP_ENVIRONMENT_KDE5) {
+     EXPECT_CALL(
+         *mock_session_bus_.get(),
+-        GetObjectProxy("org.kde.kwalletd5",
+-                       dbus::ObjectPath("/modules/kwalletd5")))
++        GetObjectProxy("org.kde.kxalletd5",
++                       dbus::ObjectPath("/modules/kxalletd5")))
+         .WillRepeatedly(Return(mock_kwallet_proxy_.get()));
+   } else {
+     EXPECT_CALL(
+         *mock_session_bus_.get(),
+-        GetObjectProxy("org.kde.kwalletd",
+-                       dbus::ObjectPath("/modules/kwalletd")))
++        GetObjectProxy("org.kde.kxalletd",
++                       dbus::ObjectPath("/modules/kxalletd")))
+         .WillRepeatedly(Return(mock_kwallet_proxy_.get()));
+   }
+ 
+@@ -474,9 +474,9 @@
+   EXPECT_TRUE(reader.PopBool(&blind));
+ 
+   if (desktop_env_ == base::nix::DESKTOP_ENVIRONMENT_KDE5)
+-    EXPECT_EQ("kwalletd5", service_name);
++    EXPECT_EQ("kxalletd5", service_name);
+   else
+-    EXPECT_EQ("kwalletd", service_name);
++    EXPECT_EQ("kxalletd", service_name);
+   EXPECT_TRUE(urls.empty());
+   EXPECT_TRUE(envs.empty());
+   EXPECT_TRUE(startup_id.empty());
+@@ -498,7 +498,7 @@
+     dbus::MethodCall* method_call, testing::Unused) {
+   if (!kwallet_running_)
+     return nullptr;
+-  EXPECT_EQ("org.kde.KWallet", method_call->GetInterface());
++  EXPECT_EQ("org.kde.Kxallet", method_call->GetInterface());
+ 
+   if (base::ContainsKey(failing_methods_, method_call->GetMember()))
+     return nullptr;

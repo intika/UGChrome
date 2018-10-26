@@ -1,0 +1,58 @@
+--- a/dbus/bus.cc
++++ b/dbus/bus.cc
+@@ -368,54 +368,7 @@
+ }
+ 
+ bool Bus::Connect() {
+-  // dbus_bus_get_private() and dbus_bus_get() are blocking calls.
+-  AssertOnDBusThread();
+-
+-  // Check if it's already initialized.
+-  if (connection_)
+-    return true;
+-
+-  ScopedDBusError error;
+-  if (bus_type_ == CUSTOM_ADDRESS) {
+-    if (connection_type_ == PRIVATE) {
+-      connection_ = dbus_connection_open_private(address_.c_str(), error.get());
+-    } else {
+-      connection_ = dbus_connection_open(address_.c_str(), error.get());
+-    }
+-  } else {
+-    const DBusBusType dbus_bus_type = static_cast<DBusBusType>(bus_type_);
+-    if (connection_type_ == PRIVATE) {
+-      connection_ = dbus_bus_get_private(dbus_bus_type, error.get());
+-    } else {
+-      connection_ = dbus_bus_get(dbus_bus_type, error.get());
+-    }
+-  }
+-  if (!connection_) {
+-    LOG(ERROR) << "Failed to connect to the bus: "
+-               << (error.is_set() ? error.message() : "");
+-    return false;
+-  }
+-
+-  if (bus_type_ == CUSTOM_ADDRESS) {
+-    // We should call dbus_bus_register here, otherwise unique name can not be
+-    // acquired. According to dbus specification, it is responsible to call
+-    // org.freedesktop.DBus.Hello method at the beging of bus connection to
+-    // acquire unique name. In the case of dbus_bus_get, dbus_bus_register is
+-    // called internally.
+-    if (!dbus_bus_register(connection_, error.get())) {
+-      LOG(ERROR) << "Failed to register the bus component: "
+-                 << (error.is_set() ? error.message() : "");
+-      return false;
+-    }
+-  }
+-  // We shouldn't exit on the disconnected signal.
+-  dbus_connection_set_exit_on_disconnect(connection_, false);
+-
+-  // Watch Disconnected signal.
+-  AddFilterFunction(Bus::OnConnectionDisconnectedFilter, this);
+-  AddMatch(kDisconnectedMatchRule, error.get());
+-
+-  return true;
++  return false;
+ }
+ 
+ void Bus::ClosePrivateConnection() {
