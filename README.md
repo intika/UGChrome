@@ -9,12 +9,8 @@ i will may be add windows version soon
 Just check download page https://www.opendesktop.org/p/1265177/
 
 #### Features 
-- Disable Chromium Kwallet Integration
-- Disable Gnome Wallet
-- Disable DBus 
 - Double Click Close Tab
-- Build with those additional flags (rtc_libvpx_build_vp9=false use_system_harfbuzz=false use_gnome_keyring=false)
-- Build with (opensuse/system-libdrm.patch)
+- Build with those additional flags (rtc_libvpx_build_vp9=false use_system_harfbuzz=false)
 
 #### Upstream 
 I will upstream thoses features (with flags) when i have the time... and/or if some one ask for ;)
