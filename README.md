@@ -2,11 +2,11 @@
 UGChrome Browser is a custom build of [ungoogled-chromium](//github.com/Eloston/ungoogled-chromium/) with additional features
 
 #### Flavors 
-Currently i am building just x64 portable linux version 
-i will may be add windows version soon 
+- Linux x64 Portable
+- Linux x64 AppImage
 
 #### Download 
-Just check download page https://www.opendesktop.org/p/1265177/
+Just check download page https://www.opendesktop.org/p/1265481/
 
 #### Features 
 - Double Click Close Tab
@@ -14,10 +14,6 @@ Just check download page https://www.opendesktop.org/p/1265177/
 
 #### Upstream 
 I will upstream thoses features (with flags) when i have the time... and/or if some one ask for ;)
-
-#### Sources 
-Modified sources files from main project are available under sources directory...  
-I will may be provide patches later if this project interest more people...
 
 #### Credits
 
