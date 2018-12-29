@@ -1,16 +1,16 @@
 --- a/chrome/browser/ui/views/tabs/tab.cc
 +++ b/chrome/browser/ui/views/tabs/tab.cc
-@@ -101,6 +101,9 @@
- // refresh mode.
- constexpr int kTabSeparatorHeight = 20;
- constexpr int kTabSeparatorTouchHeight = 24;
-+    
+@@ -91,6 +91,9 @@
+ // Opacity of the active tab background painted over inactive selected tabs.
+ constexpr float kSelectedTabOpacity = 0.75f;
+ 
 +//intika dblclick 
 +int dblClick = 0;
- 
++
  // Helper functions ------------------------------------------------------------
  
-@@ -585,6 +588,8 @@
+ // Returns the coordinate for an object of size |item_size| centered in a region
+@@ -215,6 +218,8 @@
                                               : CLOSE_TAB_FROM_TOUCH;
    DCHECK_EQ(close_button_, sender);
    controller_->CloseTab(this, source);
@@ -19,7 +19,7 @@
    if (event.type() == ui::ET_GESTURE_TAP)
      TouchUMA::RecordGestureAction(TouchUMA::kGestureTabCloseTap);
  }
-@@ -779,10 +784,14 @@
+@@ -421,10 +426,14 @@
          }
        } else if (!IsSelected()) {
          controller_->SelectTab(this);
@@ -34,7 +34,7 @@
        base::RecordAction(UserMetricsAction("SwitchTab_Click"));
      }
      ui::MouseEvent cloned_event(event_in_parent, parent(),
-@@ -805,15 +814,22 @@
+@@ -447,15 +456,22 @@
    // In some cases, ending the drag will schedule the tab for destruction; if
    // so, bail immediately, since our members are already dead and we shouldn't
    // do anything else except drop the tab where it is.
@@ -60,29 +60,24 @@
      } else if (closing_) {
        // We're animating closed and a middle mouse button was pushed on us but
        // we don't contain the mouse anymore. We assume the user is clicking
-@@ -824,18 +840,52 @@
+@@ -466,13 +482,42 @@
        Tab* closest_tab = controller_->GetTabAt(location_in_parent);
        if (closest_tab)
          controller_->CloseTab(closest_tab, CLOSE_TAB_FROM_MOUSE);
 +        //intika dblclick 
 +        dblClick++;
++
      }
    } else if (event.IsOnlyLeftMouseButton() && !event.IsShiftDown() &&
               !IsSelectionModifierDown(event)) {
      // If the tab was already selected mouse pressed doesn't change the
      // selection. Reset it now to handle the case where multiple tabs were
      // selected.
+-    controller_->SelectTab(this);
 +      
 +    //intika dblclick - Old Code ----------------------------------------
-+    /*
-     controller_->SelectTab(this);
- 
-     if (alert_indicator_button_ && alert_indicator_button_->visible() &&
-         alert_indicator_button_->bounds().Contains(event.location())) {
-       base::RecordAction(UserMetricsAction("TabAlertIndicator_Clicked"));
-+    }*/
-+    //intika dblclick - Old Code ----------------------------------------
-+    //intika dblclick ---------------------------------------------------
++    //controller_->SelectTab(this);
++
 +    if (!IsSelected()) {
 +        dblClick = 0;
 +    }
@@ -103,12 +98,8 @@
 +        }
 +    } else {
 +        controller_->SelectTab(this);
-+	    dblClick++;
-+        if (alert_indicator_button_ && alert_indicator_button_->visible() &&
-+            alert_indicator_button_->bounds().Contains(event.location())) {
-+          base::RecordAction(UserMetricsAction("TabAlertIndicator_Clicked"));
-+        }
-     }
++        dblClick++;
++    }
 +    //intika dblclick --------------------------------------------------- 
    }
  }
