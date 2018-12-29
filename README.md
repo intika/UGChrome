@@ -10,6 +10,7 @@ Just check download page https://www.opendesktop.org/p/1265481/
 
 #### Features 
 - Double Click Close Tab
+- Build without sysroot binaries
 - Build with those additional flags (rtc_libvpx_build_vp9=false use_system_harfbuzz=false)
 
 #### Current used patchs
